@@ -50,10 +50,27 @@
         .header-info {
             background-color: rgba(255, 255, 255, 0.85);
             border-radius: 15px;
-            padding: 15px;
+            padding: 20px;
             margin-bottom: 20px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             border: 1px solid var(--light-blue);
+        }
+        
+        .university-logo {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .info-item {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+            color: var(--primary-blue);
         }
         
         .pc-screen {
@@ -155,7 +172,13 @@
             font-size: 1.2rem;
         }
         
-        .pdf-viewer, .video-container {
+        .file-actions {
+            margin-left: auto;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .pdf-viewer, .video-container, .code-viewer, .main-content {
             background-color: rgba(255, 255, 255, 0.8);
             border-radius: 8px;
             padding: 20px;
@@ -167,7 +190,29 @@
             text-align: center;
         }
         
-        .pdf-icon, .video-icon {
+        .main-content {
+            flex-direction: row;
+            align-items: flex-start;
+            text-align: left;
+            justify-content: flex-start;
+            overflow-y: auto;
+        }
+        
+        .aquarium-image {
+            width: 200px;
+            height: 150px;
+            border-radius: 10px;
+            margin-right: 20px;
+            object-fit: cover;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            float: left;
+        }
+        
+        .intro-text {
+            flex: 1;
+        }
+        
+        .pdf-icon, .video-icon, .code-icon {
             font-size: 4rem;
             color: var(--primary-blue);
             margin-bottom: 20px;
@@ -191,25 +236,75 @@
             color: #555;
             font-size: 0.9rem;
         }
+        
+        .code-preview {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            border-radius: 5px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            text-align: left;
+            max-height: 300px;
+            overflow-y: auto;
+            width: 100%;
+            margin-top: 15px;
+        }
+        
+        .btn-frutiger {
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-frutiger:hover {
+            background-color: var(--dark-blue);
+            transform: translateY(-2px);
+        }
+        
+        .project-title {
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .intro-text p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
     <div class="container py-4">
         <!-- Cabeçalho com informações -->
         <div class="header-info">
-            <h1 class="title-font text-center mb-3">Internet das Coisas em um Mundo Conectado</h1>
-            <div class="row text-center">
-                <div class="col-md-3">
-                    <p class="mb-1"><strong>PUCPR</strong></p>
+            <div class="text-center mb-4">
+                <div class="university-logo">🏛️</div>
+                <h1 class="title-font mb-3">Internet das Coisas em um Mundo Conectado</h1>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="info-item">
+                        <span class="info-icon">🎓</span>
+                        <span><strong>PUCPR</strong></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">💻</span>
+                        <span><strong>Análise e Desenvolvimento de Sistemas</strong></span>
+                    </div>
                 </div>
-                <div class="col-md-3">
-                    <p class="mb-1"><strong>Análise e Desenvolvimento de Sistemas</strong></p>
-                </div>
-                <div class="col-md-3">
-                    <p class="mb-1"><strong>Disciplina: IoT</strong></p>
-                </div>
-                <div class="col-md-3">
-                    <p class="mb-1"><strong>Aluna: Glória Maria Deitos Gomes da Silva</strong></p>
+                <div class="col-md-6">
+                    <div class="info-item">
+                        <span class="info-icon">📚</span>
+                        <span><strong>Disciplina: Internet das Coisas</strong></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">👩‍🎓</span>
+                        <span><strong>Aluna: Glória Maria Deitos Gomes da Silva</strong></span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -218,7 +313,7 @@
         <div class="pc-screen">
             <div class="pc-header">
                 <div class="pc-title text-white">
-                    <i class="fas fa-desktop me-2"></i>IoT Project
+                    <span class="me-2">💻</span>IoT Project - Monitoramento de Aquário
                 </div>
                 <div class="pc-buttons">
                     <div class="pc-button close-btn"></div>
@@ -231,75 +326,159 @@
                 <!-- Abas de navegação -->
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="code-tab" data-bs-toggle="tab" data-bs-target="#code" type="button" role="tab" aria-controls="code" aria-selected="true">
-                            <i class="fas fa-code me-2"></i>Código
+                        <button class="nav-link active" id="main-tab" data-bs-toggle="tab" data-bs-target="#main" type="button" role="tab" aria-controls="main" aria-selected="true">
+                            <span class="me-2">🏠</span>Principal
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="code-tab" data-bs-toggle="tab" data-bs-target="#code" type="button" role="tab" aria-controls="code" aria-selected="false">
+                            <span class="me-2">📄</span>Código
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="document-tab" data-bs-toggle="tab" data-bs-target="#document" type="button" role="tab" aria-controls="document" aria-selected="false">
-                            <i class="fas fa-file-pdf me-2"></i>Documento
+                            <span class="me-2">📋</span>Documento
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="video-tab" data-bs-toggle="tab" data-bs-target="#video" type="button" role="tab" aria-controls="video" aria-selected="false">
-                            <i class="fas fa-video me-2"></i>Vídeo
+                            <span class="me-2">🎬</span>Vídeo
                         </button>
                     </li>
                 </ul>
                 
                 <!-- Conteúdo das abas -->
                 <div class="tab-content" id="myTabContent">
+                    <!-- Aba Principal -->
+                    <div class="tab-pane fade show active" id="main" role="tabpanel" aria-labelledby="main-tab">
+                        <div class="main-content">
+                            <img src="./aquarium.webp" alt="Sistema de Monitoramento de Aquário" class="aquarium-image">
+                            <div class="intro-text">
+                                <h3 class="project-title">Sistema de Monitoramento Inteligente para Aquários: Tecnologia a Serviço da Vida Aquática</h3>
+                                <p>
+                                    A manutenção de aquários exige atenção constante à temperatura da água, pois variações bruscas podem comprometer a saúde dos peixes. Pensando nisso, desenvolvi um sistema inteligente de monitoramento utilizando Internet das Coisas que integra sensores, microcontrolador ESP32 e interface remota via Blynk.
+                                </p>
+                                <p>
+                                    Dessa forma, o projeto oferece uma solução prática e acessível para aquaristas, permitindo o acompanhamento em tempo real das condições do aquário através de alertas visuais imediatos. Consequentemente, esta implementação demonstra como a tecnologia pode ser aplicada para resolver problemas reais de forma simples e eficaz.
+                                </p>
+                                <div class="mt-4">
+                                    <h5>🔧 Componentes do Sistema:</h5>
+                                    <ul>
+                                        <li>Microcontrolador ESP32</li>
+                                        <li>Sensor de temperatura DS18B20</li>
+                                        <li>Plataforma Blynk para monitoramento remoto</li>
+                                        <li>LEDs indicadores de status</li>
+                                        <li>Alimentação via USB</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <!-- Aba de Código -->
-                    <div class="tab-pane fade show active" id="code" role="tabpanel" aria-labelledby="code-tab">
-                        <h4 class="mb-3">Arquivos do Projeto</h4>
+                    <div class="tab-pane fade" id="code" role="tabpanel" aria-labelledby="code-tab">
+                        <h4 class="mb-3">📁 Arquivos do Projeto</h4>
                         <ul class="file-list">
                             <li class="file-item">
-                                <i class="fas fa-file-code file-icon"></i>
-                                <div>
+                                <span class="file-icon">🐍</span>
+                                <div class="flex-grow-1">
                                     <h5 class="mb-1">main.py</h5>
                                     <p class="mb-0 text-muted">Arquivo principal do projeto IoT</p>
                                 </div>
+                                <div class="file-actions">
+                                    <button class="btn btn-sm btn-frutiger" onclick="viewCode('./main.py')">
+                                        <span class="me-1">👁️</span> Ver
+                                    </button>
+                                    <a href="./main.py" download class="btn btn-sm btn-outline-primary">
+                                        <span class="me-1">📥</span> Baixar
+                                    </a>
+                                </div>
                             </li>
                             <li class="file-item">
-                                <i class="fas fa-file-code file-icon"></i>
-                                <div>
+                                <span class="file-icon">📊</span>
+                                <div class="flex-grow-1">
                                     <h5 class="mb-1">diagram.json</h5>
                                     <p class="mb-0 text-muted">Diagrama do sistema em formato JSON</p>
                                 </div>
+                                <div class="file-actions">
+                                    <button class="btn btn-sm btn-frutiger" onclick="viewCode('./diagram.json')">
+                                        <span class="me-1">👁️</span> Ver
+                                    </button>
+                                    <a href="./diagram.json" download class="btn btn-sm btn-outline-primary">
+                                        <span class="me-1">📥</span> Baixar
+                                    </a>
+                                </div>
                             </li>
                             <li class="file-item">
-                                <i class="fas fa-file-code file-icon"></i>
-                                <div>
+                                <span class="file-icon">🔗</span>
+                                <div class="flex-grow-1">
                                     <h5 class="mb-1">blynk.py</h5>
                                     <p class="mb-0 text-muted">Integração com a plataforma Blynk</p>
                                 </div>
+                                <div class="file-actions">
+                                    <button class="btn btn-sm btn-frutiger" onclick="viewCode('./blynk.py')">
+                                        <span class="me-1">👁️</span> Ver
+                                    </button>
+                                    <a href="./blynk.py" download class="btn btn-sm btn-outline-primary">
+                                        <span class="me-1">📥</span> Baixar
+                                    </a>
+                                </div>
                             </li>
                             <li class="file-item">
-                                <i class="fas fa-file-code file-icon"></i>
-                                <div>
+                                <span class="file-icon">📡</span>
+                                <div class="flex-grow-1">
                                     <h5 class="mb-1">umqttsimple.py</h5>
                                     <p class="mb-0 text-muted">Cliente MQTT para comunicação</p>
                                 </div>
+                                <div class="file-actions">
+                                    <button class="btn btn-sm btn-frutiger" onclick="viewCode('./umqttsimple.py')">
+                                        <span class="me-1">👁️</span> Ver
+                                    </button>
+                                    <a href="./umqttsimple.py" download class="btn btn-sm btn-outline-primary">
+                                        <span class="me-1">📥</span> Baixar
+                                    </a>
+                                </div>
                             </li>
                         </ul>
+                        
+                        <div id="codePreview" class="code-preview d-none">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h6 id="codeFileName" class="mb-0">Arquivo</h6>
+                                <button class="btn btn-sm btn-outline-light" onclick="closeCodePreview()">✖️ Fechar</button>
+                            </div>
+                            <pre id="codeContent" class="mb-0"></pre>
+                        </div>
                     </div>
                     
                     <!-- Aba de Documento -->
                     <div class="tab-pane fade" id="document" role="tabpanel" aria-labelledby="document-tab">
                         <div class="pdf-viewer">
-                            <i class="fas fa-file-pdf pdf-icon"></i>
+                            <div class="mb-4">📋</div>
                             <h4>Somativa2-IoT_MundoConectado-GloriaDeitos.pdf</h4>
                             <p class="mt-3">Visualização do documento PDF</p>
-                            <button class="btn btn-primary mt-3">
-                                <i class="fas fa-download me-2"></i>Baixar PDF
-                            </button>
+                            <div class="mt-3 d-flex gap-3">
+                                <button class="btn btn-frutiger" onclick="viewPDF()">
+                                    <span class="me-2">👁️</span>Visualizar PDF
+                                </button>
+                                <a href="./Somativa2-IoT_MundoConectado-GloriaDeitos.pdf" download class="btn btn-outline-primary">
+                                    <span class="me-2">📥</span>Baixar PDF
+                                </a>
+                            </div>
+                            
+                            <div id="pdfEmbed" class="mt-4 w-100 d-none">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h5 class="mb-0">Visualização do PDF</h5>
+                                    <button class="btn btn-sm btn-outline-secondary" onclick="closePDF()">✖️ Fechar</button>
+                                </div>
+                                <iframe src="./Somativa2-IoT_MundoConectado-GloriaDeitos.pdf" width="100%" height="400" style="border: 1px solid #ccc;"></iframe>
+                            </div>
                         </div>
                     </div>
                     
                     <!-- Aba de Vídeo -->
                     <div class="tab-pane fade" id="video" role="tabpanel" aria-labelledby="video-tab">
                         <div class="video-container">
-                            <i class="fas fa-video video-icon"></i>
+                            <div class="mb-4">🎬</div>
                             <h4>Vídeo do Projeto IoT</h4>
                             <p class="mt-3">Visualização do vídeo do YouTube</p>
                             <div class="mt-4" style="width: 100%; max-width: 560px;">
@@ -315,7 +494,7 @@
         
         <!-- Data -->
         <div class="date-display">
-            <i class="fas fa-calendar-alt me-2"></i> Setembro/2025
+            <span class="me-2">📅</span> Setembro/2025
         </div>
         
         <!-- Rodapé -->
@@ -326,5 +505,39 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Função para visualizar código (simulação)
+        function viewCode(filename) {
+            // Em um ambiente real, isso faria uma requisição para buscar o conteúdo do arquivo
+            document.getElementById('codeFileName').textContent = filename;
+            
+            // Simulação de conteúdo de código
+            let codeContent = `# Exemplo de conteúdo do arquivo ${filename}\n\n`;
+            
+            if (filename === './main.py') {
+                codeContent += `import network\nimport time\nfrom machine import Pin\nimport dht\nimport blynklib\n\n# Configuração do Wi-Fi\nwifi_ssid = "SUA_REDE"\nwifi_password = "SUA_SENHA"\n\n# Conectar ao Wi-Fi\ndef connect_wifi():\n    wlan = network.WLAN(network.STA_IF)\n    wlan.active(True)\n    if not wlan.isconnected():\n        print('Conectando ao Wi-Fi...')\n        wlan.connect(wifi_ssid, wifi_password)\n        while not wlan.isconnected():\n            pass\n    print('Conectado ao Wi-Fi:', wlan.ifconfig())\n\n# Configuração do sensor DHT22\nsensor = dht.DHT22(Pin(4))\n\n# Configuração do Blynk\nBLYNK_AUTH = 'SEU_TOKEN_BLYNK'\nblynk = blynklib.Blynk(BLYNK_AUTH)\n\n# Loop principal\nwhile True:\n    try:\n        sensor.measure()\n        temp = sensor.temperature()\n        humidity = sensor.humidity()\n        \n        # Enviar dados para o Blynk\n        blynk.virtual_write(0, temp)\n        blynk.virtual_write(1, humidity)\n        \n        print(f'Temperatura: {temp}°C, Umidade: {humidity}%')\n        \n    except Exception as e:\n        print('Erro na leitura do sensor:', e)\n    \n    time.sleep(2)\n    blynk.run()`;
+            } else if (filename === './blynk.py') {
+                codeContent += `import blynklib\nimport network\nimport time\n\n# Configurações do Blynk\nBLYNK_AUTH = 'SEU_TOKEN_AQUI'\n\n# Conectar ao Wi-Fi\ndef connect_wifi():\n    # Código de conexão Wi-Fi\n    pass\n\n# Inicializar Blynk\nblynk = blynklib.Blynk(BLYNK_AUTH)\n\n# Handler para botões virtuais\n@blynk.handle_event('write V0')\ndef write_virtual_pin_handler(pin, value):\n    print(f'Virtual pin {pin} alterado para: {value}')\n\n# Main loop\nwhile True:\n    blynk.run()\n    time.sleep(1)`;
+            } else {
+                codeContent += `def main():\n    print("Hello, IoT World!")\n\nif __name__ == "__main__":\n    main()`;
+            }
+            
+            document.getElementById('codeContent').textContent = codeContent;
+            document.getElementById('codePreview').classList.remove('d-none');
+        }
+        
+        function closeCodePreview() {
+            document.getElementById('codePreview').classList.add('d-none');
+        }
+        
+        function viewPDF() {
+            document.getElementById('pdfEmbed').classList.remove('d-none');
+        }
+        
+        function closePDF() {
+            document.getElementById('pdfEmbed').classList.add('d-none');
+        }
+    </script>
 </body>
 </html>
