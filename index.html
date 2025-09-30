@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT - Mundo Conectado</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-blue: #00a8e8;
+            --light-blue: #b3e0ff;
+            --dark-blue: #0066cc;
+            --green: #00cc99;
+            --light-green: #ccffcc;
+            --white: #ffffff;
+            --gray: #f0f0f0;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--light-blue);
+            background-image: url('bg.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        
+        .title-font {
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            font-size: 2.5rem;
+            color: var(--dark-blue);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            letter-spacing: 1px;
+        }
+        
+        .header-info {
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--light-blue);
+        }
+        
+        .pc-screen {
+            background-color: #2c3e50;
+            border-radius: 10px;
+            padding: 0;
+            margin: 20px auto;
+            max-width: 900px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pc-header {
+            background-color: #34495e;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #1a252f;
+        }
+        
+        .pc-buttons {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .pc-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .close-btn {
+            background-color: #e74c3c;
+        }
+        
+        .minimize-btn {
+            background-color: #f39c12;
+        }
+        
+        .maximize-btn {
+            background-color: #2ecc71;
+        }
+        
+        .pc-content {
+            background-color: #ecf0f1;
+            min-height: 500px;
+            padding: 20px;
+        }
+        
+        .tab-content {
+            padding: 20px;
+        }
+        
+        .nav-tabs {
+            border-bottom: 2px solid var(--primary-blue);
+        }
+        
+        .nav-tabs .nav-link {
+            color: #555;
+            border: none;
+            border-bottom: 3px solid transparent;
+            padding: 10px 20px;
+            font-weight: 500;
+        }
+        
+        .nav-tabs .nav-link.active {
+            color: var(--primary-blue);
+            background-color: transparent;
+            border: none;
+            border-bottom: 3px solid var(--primary-blue);
+        }
+        
+        .file-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .file-item {
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary-blue);
+        }
+        
+        .file-item:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+            transform: translateX(5px);
+        }
+        
+        .file-icon {
+            margin-right: 10px;
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+        }
+        
+        .pdf-viewer, .video-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            padding: 20px;
+            height: 450px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .pdf-icon, .video-icon {
+            font-size: 4rem;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+        
+        .date-display {
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 10px;
+            padding: 10px 20px;
+            text-align: center;
+            font-weight: 500;
+            color: var(--dark-blue);
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .footer {
+            margin-top: 30px;
+            padding: 20px 0;
+            text-align: center;
+            color: #555;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-4">
+        <!-- Cabeçalho com informações -->
+        <div class="header-info">
+            <h1 class="title-font text-center mb-3">Internet das Coisas em um Mundo Conectado</h1>
+            <div class="row text-center">
+                <div class="col-md-3">
+                    <p class="mb-1"><strong>PUCPR</strong></p>
+                </div>
+                <div class="col-md-3">
+                    <p class="mb-1"><strong>Análise e Desenvolvimento de Sistemas</strong></p>
+                </div>
+                <div class="col-md-3">
+                    <p class="mb-1"><strong>Disciplina: IoT</strong></p>
+                </div>
+                <div class="col-md-3">
+                    <p class="mb-1"><strong>Aluna: Glória Maria Deitos Gomes da Silva</strong></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tela do PC -->
+        <div class="pc-screen">
+            <div class="pc-header">
+                <div class="pc-title text-white">
+                    <i class="fas fa-desktop me-2"></i>IoT Project
+                </div>
+                <div class="pc-buttons">
+                    <div class="pc-button close-btn"></div>
+                    <div class="pc-button minimize-btn"></div>
+                    <div class="pc-button maximize-btn"></div>
+                </div>
+            </div>
+            
+            <div class="pc-content">
+                <!-- Abas de navegação -->
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="code-tab" data-bs-toggle="tab" data-bs-target="#code" type="button" role="tab" aria-controls="code" aria-selected="true">
+                            <i class="fas fa-code me-2"></i>Código
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="document-tab" data-bs-toggle="tab" data-bs-target="#document" type="button" role="tab" aria-controls="document" aria-selected="false">
+                            <i class="fas fa-file-pdf me-2"></i>Documento
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="video-tab" data-bs-toggle="tab" data-bs-target="#video" type="button" role="tab" aria-controls="video" aria-selected="false">
+                            <i class="fas fa-video me-2"></i>Vídeo
+                        </button>
+                    </li>
+                </ul>
+                
+                <!-- Conteúdo das abas -->
+                <div class="tab-content" id="myTabContent">
+                    <!-- Aba de Código -->
+                    <div class="tab-pane fade show active" id="code" role="tabpanel" aria-labelledby="code-tab">
+                        <h4 class="mb-3">Arquivos do Projeto</h4>
+                        <ul class="file-list">
+                            <li class="file-item">
+                                <i class="fas fa-file-code file-icon"></i>
+                                <div>
+                                    <h5 class="mb-1">main.py</h5>
+                                    <p class="mb-0 text-muted">Arquivo principal do projeto IoT</p>
+                                </div>
+                            </li>
+                            <li class="file-item">
+                                <i class="fas fa-file-code file-icon"></i>
+                                <div>
+                                    <h5 class="mb-1">diagram.json</h5>
+                                    <p class="mb-0 text-muted">Diagrama do sistema em formato JSON</p>
+                                </div>
+                            </li>
+                            <li class="file-item">
+                                <i class="fas fa-file-code file-icon"></i>
+                                <div>
+                                    <h5 class="mb-1">blynk.py</h5>
+                                    <p class="mb-0 text-muted">Integração com a plataforma Blynk</p>
+                                </div>
+                            </li>
+                            <li class="file-item">
+                                <i class="fas fa-file-code file-icon"></i>
+                                <div>
+                                    <h5 class="mb-1">umqttsimple.py</h5>
+                                    <p class="mb-0 text-muted">Cliente MQTT para comunicação</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Aba de Documento -->
+                    <div class="tab-pane fade" id="document" role="tabpanel" aria-labelledby="document-tab">
+                        <div class="pdf-viewer">
+                            <i class="fas fa-file-pdf pdf-icon"></i>
+                            <h4>Somativa2-IoT_MundoConectado-GloriaDeitos.pdf</h4>
+                            <p class="mt-3">Visualização do documento PDF</p>
+                            <button class="btn btn-primary mt-3">
+                                <i class="fas fa-download me-2"></i>Baixar PDF
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Aba de Vídeo -->
+                    <div class="tab-pane fade" id="video" role="tabpanel" aria-labelledby="video-tab">
+                        <div class="video-container">
+                            <i class="fas fa-video video-icon"></i>
+                            <h4>Vídeo do Projeto IoT</h4>
+                            <p class="mt-3">Visualização do vídeo do YouTube</p>
+                            <div class="mt-4" style="width: 100%; max-width: 560px;">
+                                <div class="ratio ratio-16x9">
+                                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Vídeo do Projeto IoT" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Data -->
+        <div class="date-display">
+            <i class="fas fa-calendar-alt me-2"></i> Setembro/2025
+        </div>
+        
+        <!-- Rodapé -->
+        <div class="footer">
+            <p>Projeto desenvolvido para a disciplina de Internet das Coisas em um Mundo Conectado</p>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
