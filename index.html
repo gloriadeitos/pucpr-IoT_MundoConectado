@@ -188,15 +188,21 @@
         
         .nav-tabs {
             border-bottom: 2px solid var(--primary-blue);
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
         }
         
         .nav-tabs .nav-link {
             color: #555;
             border: none;
             border-bottom: 3px solid transparent;
-            padding: 12px 24px;
+            padding: 12px 16px;
             font-weight: 500;
             transition: all 0.3s ease;
+            white-space: nowrap;
         }
         
         .nav-tabs .nav-link.active {
@@ -225,6 +231,7 @@
             align-items: center;
             transition: all 0.3s ease;
             border-left: 4px solid var(--primary-blue);
+            flex-wrap: wrap;
         }
         
         .file-item:hover {
@@ -398,7 +405,29 @@
             font-size: 1.05rem;
         }
         
-        /* Responsividade */
+        /* Responsividade Melhorada */
+        @media (max-width: 992px) {
+            .pc-screen {
+                margin: 15px;
+            }
+            
+            .nav-tabs .nav-link {
+                padding: 10px 14px;
+                font-size: 0.9rem;
+            }
+            
+            .file-item {
+                padding: 12px 15px;
+            }
+            
+            .file-actions {
+                margin-top: 10px;
+                margin-left: 0;
+                width: 100%;
+                justify-content: flex-end;
+            }
+        }
+        
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
@@ -408,6 +437,7 @@
             
             .info-section {
                 gap: 15px;
+                justify-content: center;
             }
             
             .info-item {
@@ -429,9 +459,55 @@
             .video-wrapper {
                 width: 95%;
             }
+            
+            .pc-header {
+                padding: 8px 15px;
+            }
+            
+            .pc-title {
+                font-size: 0.9rem;
+            }
+            
+            .tab-content {
+                padding: 15px;
+            }
+            
+            .pdf-viewer, .video-container, .code-viewer, .main-content {
+                padding: 20px;
+            }
+            
+            .project-title {
+                font-size: 1.3rem;
+            }
+            
+            .intro-text p {
+                font-size: 1rem;
+            }
+            
+            .file-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .file-icon {
+                margin-bottom: 10px;
+            }
         }
         
         @media (max-width: 576px) {
+            .title-section h1 {
+                font-size: 1.5rem;
+            }
+            
+            .title-section p {
+                font-size: 0.8rem;
+            }
+            
+            .info-section {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
             .aquarium-image {
                 width: 100%;
                 max-width: 250px;
@@ -443,6 +519,91 @@
             
             .video-container {
                 padding: 15px;
+            }
+            
+            .nav-tabs .nav-link {
+                padding: 8px 12px;
+                font-size: 0.85rem;
+            }
+            
+            .file-item {
+                padding: 10px 12px;
+            }
+            
+            .file-actions {
+                flex-direction: column;
+                gap: 5px;
+                width: 100%;
+            }
+            
+            .btn-frutiger, .btn-outline-primary {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .pdf-header {
+                padding: 12px 15px;
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            .pdf-header h5 {
+                font-size: 1rem;
+            }
+            
+            .date-display {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .footer-text {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .nav-tabs .nav-link {
+                padding: 6px 8px;
+                font-size: 0.8rem;
+            }
+            
+            .nav-tabs .nav-link span {
+                margin-right: 4px;
+            }
+            
+            .pc-content {
+                padding: 15px 10px;
+            }
+            
+            .tab-content {
+                padding: 10px 5px;
+            }
+            
+            .project-title {
+                font-size: 1.2rem;
+            }
+        }
+        
+        /* Melhorias para iPad */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .pc-screen {
+                margin: 20px 30px;
+            }
+            
+            .aquarium-image {
+                width: 180px;
+                margin-right: 20px;
+            }
+            
+            .file-item {
+                flex-wrap: nowrap;
+            }
+            
+            .file-actions {
+                margin-top: 0;
+                margin-left: auto;
+                width: auto;
             }
         }
     </style>
@@ -462,10 +623,10 @@
             <div class="info-section">
                 <div class="info-item">
                     <p class="main">PUCPR</p>
-                    <p class="sub">Análise e Desenvolvimento</p>
+                    <p class="sub">Análise e Desenvolvimento de Sistemas</p>
                 </div>
                 <div class="info-item">
-                    <p class="main">Glória Deitos</p>
+                    <p class="main">Glória Maria Deitos Gomes da Silva</p>
                     <p class="sub">Setembro/2025</p>
                 </div>
             </div>
@@ -634,7 +795,7 @@
                                 <h4 class="mb-4 text-center">🎬 Vídeo do Projeto IoT</h4>
                                 <div class="video-embed">
                                     <div class="ratio ratio-16x9">
-                                        <iframe src="https://youtu.be/xzq2o6Ru1Ws?si=UkG11ZcrlIYnL7Fx" 
+                                        <iframe src="https://www.youtube.com/watch?v=xzq2o6Ru1Ws" 
                                                 title="Vídeo do Projeto IoT" 
                                                 allowfullscreen
                                                 style="border: none; border-radius: 8px;">
