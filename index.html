@@ -305,13 +305,21 @@
         .video-container {
             justify-content: flex-start;
             align-items: center;
-            height: 500px;
+            min-height: 500px;
+            padding: 20px;
         }
         
         .video-wrapper {
             width: 100%;
             max-width: 800px;
             margin: 0 auto;
+        }
+        
+        .video-embed {
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
         
         .pdf-icon, .video-icon, .code-icon {
@@ -430,6 +438,10 @@
             
             .pdf-viewer {
                 height: 500px;
+            }
+            
+            .video-container {
+                padding: 15px;
             }
         }
     </style>
@@ -618,9 +630,15 @@
                     <div class="tab-pane fade" id="video" role="tabpanel" aria-labelledby="video-tab">
                         <div class="video-container">
                             <div class="video-wrapper">
-                                <h4 class="mb-4">🎬 Vídeo do Projeto IoT</h4>
-                                <div class="ratio ratio-16x9">
-                                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Vídeo do Projeto IoT" allowfullscreen style="border-radius: 8px;"></iframe>
+                                <h4 class="mb-4 text-center">🎬 Vídeo do Projeto IoT</h4>
+                                <div class="video-embed">
+                                    <div class="ratio ratio-16x9">
+                                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                                                title="Vídeo do Projeto IoT" 
+                                                allowfullscreen
+                                                style="border: none; border-radius: 8px;">
+                                        </iframe>
+                                    </div>
                                 </div>
                             </div>
                         </div>
