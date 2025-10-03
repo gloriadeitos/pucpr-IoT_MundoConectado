@@ -158,22 +158,7 @@ BLYNK_AUTH = "SeuTokenBlynk"
 - Experiência prática com simuladores
 - Integração de hardware e software
 - Criação de interfaces de usuário para IoT
-
-## 🤝 Contribuições
-
-Este é um projeto acadêmico individual, mas sugestões e melhorias são sempre bem-vindas!
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
-## 📞 Contato
-
-**Glória Maria Deitos Gomes da Silva**
-- 📧 Email: [seu-email@exemplo.com]
-- 💼 LinkedIn: [linkedin.com/in/gloriadeitosdev](https://linkedin.com/in/gloriadeitosdev)
-- 🐱 GitHub: [@gloriadeitos](https://github.com/gloriadeitos)
-
+  
 ---
 
 <p align="center">
